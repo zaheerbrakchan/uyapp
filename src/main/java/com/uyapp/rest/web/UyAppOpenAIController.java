@@ -18,4 +18,9 @@ public class UyAppOpenAIController {
     public String QueryAI(@RequestParam("query") String query) {
         return uyAppOpenAIService.chat(query);
     }
+
+    @GetMapping("/test")
+    public String Test() {
+        return "Service is Running !!!!!!!!11";
+    }
 }
