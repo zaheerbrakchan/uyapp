@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/uyapp")
 //@CrossOrigin("*")
-@CrossOrigin(origins = "http://uyapp-production.up.railway.app")
 public class UyAppOpenAIController {
 
     @Autowired
