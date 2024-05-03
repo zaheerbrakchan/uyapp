@@ -2,20 +2,19 @@ package com.uyapp.rest.web;
 
 import com.uyapp.service.UyAppOpenAIService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.origin.Origin;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/uyapp")
+@CrossOrigin("*")
 public class UyAppOpenAIController {
 
     @Autowired
     UyAppOpenAIService uyAppOpenAIService;
 
-    @GetMapping("/query-ai")
-    public String QueryAI(@RequestParam("query") String query) {
+    @GetMapping("/user-query")
+    public String QueryAI(@RequestBody String query) {
         return uyAppOpenAIService.chat(query);
     }
 
