@@ -1,5 +1,6 @@
 package com.uyapp.service.impl;
 
+import com.uyapp.constant.UyConstants;
 import com.uyapp.service.AiAssitant;
 import com.uyapp.service.UyAppOpenAIService;
 import dev.langchain4j.data.message.AiMessage;
@@ -34,9 +35,7 @@ public class UyAppOpenAIServiceImpl implements UyAppOpenAIService {
 
         AiAssitant assistant = AiServices.create(AiAssitant.class, openAiChatModel);
 
-       response= assistant.chat(query);
-
-
+       response= assistant.chat(query, UyConstants.SYSTEM_MESSAGE,UyConstants.USER_MESSAGE);
 
 
         return response;
