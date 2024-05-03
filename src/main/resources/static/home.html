@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<h1>Welcome to UY Health Assitant!</h1>
+<form id="queryForm">
+    <label for="query">Please ask your query:</label><br>
+    <input type="text" id="query" name="query"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="loader" class="loader"></div>
+<div id="response" style="display: none;"></div>
+
+<script>
+    document.getElementById('queryForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        var query = document.getElementById('query').value;
+
+        // Show loader
+        document.getElementById('loader').style.display = 'block';
+
+        // Make a POST request to your controller API
+        fetch('/uyapp/user-query', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: query })
+        })
+            .then(response => response.text())
+            .then(data => {
+                // Hide loader
+                document.getElementById('loader').style.display = 'none';
+
+                // Display response
+                document.getElementById('response').innerText = data;
+                document.getElementById('response').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Hide loader and show error message
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('response').innerText = 'An error occurred while processing your request.';
+                document.getElementById('response').style.display = 'block';
+            });
+    });
+</script>
+</body>
+</html>

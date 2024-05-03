@@ -15,7 +15,7 @@ public class UyAppOpenAIController {
     UyAppOpenAIService uyAppOpenAIService;
 
 
-    @GetMapping("/user-query")
+    @PostMapping("/user-query")
     public String QueryAI(@RequestBody String query) {
         return uyAppOpenAIService.chat(query);
     }
@@ -26,4 +26,6 @@ public class UyAppOpenAIController {
     public String Test() {
         return "Service is Running !!!!!!!!11";
     }
+
+
 }
